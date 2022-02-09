@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/css/autoComplete.min.css">
+    <title>Банник-драфтер старпёр эдишн by Bn_</title>
+</head>
+
+<body>
+    <center>
+    <h2>Банник-драфтер старпёр эдишн by Bn_</h2>
+    <img src="bannik.jpg" width="160">
+    </center>
+    <table align = "center" width = "80%">
+        <tr>
+            <td>
+                <div class="autoComplete_wrapper">
+                    <input id="autoComplete" type="search" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off">
+                </div>
+            </td>
+            <td>
+                <ol id="bans"></ol>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2>
+                <div id="output"></div>
+                <div id = "drafter">
+                    <label for="playerCount">Игроков: </label><input id="playerCount" type="number" value=8> 
+                    <label for="pickCount">Цив в пике: </label><input id="pickCount" type="number" value=4> 
+                    <button id="btnMakeDraft" onClick='makeDraft()'>захерачить драфт</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
+    <script src="config.js" charset="utf-8"></script>
+    <script src="drafter.js" charset="utf-8"></script>
+</body>
+
+</html>
