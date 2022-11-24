@@ -56,11 +56,16 @@ function makeDraft() {
         .map(({ value }) => value)
     console.log(shuffled);
 
+    let playerPrefix = 'Игрок ';
+    if (presetParam.toLowerCase() == 'gay') {
+        playerPrefix = 'Гей №';
+    };
+
     result = '<h3>Зопикано:</h3>';
     result_plain = '';
     for (p = 0; p < players; p++) {
         result += `<b>Игрок ${p+1}:</b> `;
-        result_plain += `Игрок ${p+1}: `;
+        result_plain += `${playerPrefix}${p+1}: `;
         pick = [];
         for (i = 0; i < picks; i++) {
             pick.push(CIV_LEADERS[shuffled[p*picks+i]]);
@@ -86,9 +91,32 @@ function textToClipboard (text) {
     document.body.removeChild(dummy);
 };
 
+let url_string = window.location.href; // www.test.com?filename=test
+let url = new URL(url_string);
+let presetParam = url.searchParams.get('preset');
+let bansParam = url.searchParams.get('bans');
+
+if (!presetParam) {
+    presetParam = 'auto';
+}
+
+let presetBans = [];
+if (presetParam in PRESETS) {
+    presetBans = PRESETS[presetParam];
+};
+
+
+console.log(presetParam, bansParam);
+
 const banListElement = document.querySelector('#bans');
 const ac = document.querySelector('#autoComplete');
-let banList = [].concat(AUTOBAN_LIST);
+let banList = [].concat(presetBans);
+
+if (bansParam) {
+    bansParam.split(",").forEach(item => {
+        addBan(item);
+    });
+};
 
 ac.addEventListener('results', function (event) {
     if (event.detail.results.length == 1) {
